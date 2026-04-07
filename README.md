@@ -8,8 +8,9 @@
 07.04 - სამუშაო გეგმის შედგენა 
 07.04 - Vite პროექტის შექმნა
 07.04 - Tailwind CSS-ის დაყენება
-07.04 -
-07.04 - 
+07.04 - React Router-ის დაყენება
+07.04 - საქაღალდეების სტრუქტურა
+07.04 - პირველი კომიტი 
 
 
 ## 🛠️ ტექნოლოგიები
@@ -18,7 +19,7 @@
 - 🎨 Tailwind CSS
 - 🔀 React Router v6
 - 🔗 [API სახელი] — [API ლინკი]
-- 🤖 AI ხელსაწყო: [ChatGPT / Claude / Gemini]
+- 🤖 AI ხელსაწყო: [Gemini]
 - 🐙 Git / GitHub
 
 ---
@@ -37,8 +38,8 @@
 ## 🚀 ინსტალაცია
 
 ```bash
-git clone https://github.com/[შენი-username]/[repo-name]
-cd [repo-name]
+git clone https://github.com/sakandelidzegiorgi/giorgi-sakandelidze-portfolio
+cd [giorgi-sakandelidze-portfolio]
 npm install
 npm run dev
 ```
@@ -73,4 +74,4 @@ npm run dev
 
 ## 👤 ავტორი
 
-**[სახელი გვარი]** — [GitHub პროფილის ლინკი]
+**[გიორგი საკანდელიძე]** — [https://github.com/sakandelidzegiorgi]
