@@ -1,5 +1,5 @@
 // შემოგვაქვს ჩვენი ტიპები (Interfaces) types ფაილიდან
-import { Project, NavLink } from '../types';
+import type { Project, NavLink } from '../types/index';
 
 // ნავიგაციის მონაცემები
 export const navLinks: NavLink[] = [
