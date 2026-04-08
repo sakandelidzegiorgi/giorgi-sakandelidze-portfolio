@@ -13,8 +13,8 @@ export const navLinks: NavLink[] = [
 export const projects: Project[] = [
   {
     id: 1,
-    title: 'ონლაინ მაღაზია',
-    description: 'თანამედროვე ონლაინ მაღაზია პროდუქტების კატალოგითა და კალათით.',
+    title: 'პორტფოლიო',
+    description: 'გიორგი საკანდელიძის პორტფოლიო.',
     imageUrl: 'https://via.placeholder.com/400x250',
     techStack: ['React', 'TypeScript', 'Tailwind CSS'],
     liveUrl: 'https://example.com'
