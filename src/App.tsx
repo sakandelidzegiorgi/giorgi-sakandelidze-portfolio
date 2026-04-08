@@ -2,15 +2,19 @@
 import { BrowserRouter, Routes, Route } from 'react-router-dom';
 import MainLayout from './layouts/MainLayout';
 import Home from './pages/Home';
+import About from './pages/About';
+import Portfolio from './pages/Portfolio';
+import Contact from './pages/Contact';
 
 function App() {
   return (
     <BrowserRouter>
       <MainLayout>
-        {/* აქ ვწერთ ჩვენს მარშრუტებს */}
         <Routes>
           <Route path="/" element={<Home />} />
-          {/* სამომავლოდ აქ დაემატება სხვა გვერდებიც (მაგ. /about, /portfolio) */}
+          <Route path="/about" element={<About />} />
+          <Route path="/portfolio" element={<Portfolio />} />
+          <Route path="/contact" element={<Contact />} />
         </Routes>
       </MainLayout>
     </BrowserRouter>
