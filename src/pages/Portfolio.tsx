@@ -1,5 +1,5 @@
 // src/pages/Portfolio.tsx
-import { useState, useEffect } from 'react';
+import { useState, useEffect, useCallback } from 'react'; // დაემატა useCallback
 import Section from '../components/Section';
 import Card from '../components/Card';
 import Button from '../components/Button';
@@ -8,6 +8,7 @@ import { projects } from '../data/index';
 import GithubRepos from '../components/GithubRepos'; 
 
 export default function Portfolio() {
+  // ბრაუზერის სათაურის შეცვლა
   useEffect(() => {
     document.title = 'პორტფოლიო | გიორგის პორტფოლიო';
   }, []);
@@ -15,6 +16,12 @@ export default function Portfolio() {
   const [filter, setFilter] = useState<string>('all');
   const categories = ['all', 'React', 'TypeScript', 'Tailwind CSS'];
 
+  // useCallback-ით დავიმახსოვრეთ ფილტრის ფუნქცია, რომ ტყუილად არ შეიქმნას თავიდან
+  const handleFilterChange = useCallback((category: string) => {
+    setFilter(category);
+  }, []);
+
+  // პროექტების გაფილტვრა არჩეული კატეგორიის მიხედვით
   const filteredProjects = filter === 'all' 
     ? projects 
     : projects.filter(project => project.techStack.includes(filter));
@@ -31,7 +38,8 @@ export default function Portfolio() {
             <Button 
               key={category}
               variant={filter === category ? 'primary' : 'outline'}
-              onClick={() => setFilter(category)}
+              // აქ ვიყენებთ ჩვენს ახალ, ოპტიმიზებულ ფუნქციას
+              onClick={() => handleFilterChange(category)}
             >
               {category === 'all' ? 'ყველა' : category}
             </Button>
