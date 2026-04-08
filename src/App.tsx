@@ -5,6 +5,7 @@ import Home from './pages/Home';
 import About from './pages/About';
 import Portfolio from './pages/Portfolio';
 import Contact from './pages/Contact';
+import NotFound from './pages/NotFound'; // შემოვიტანეთ 404 გვერდი
 
 function App() {
   return (
@@ -15,6 +16,9 @@ function App() {
           <Route path="/about" element={<About />} />
           <Route path="/portfolio" element={<Portfolio />} />
           <Route path="/contact" element={<Contact />} />
+          
+          {/* Catch-all route 404 გვერდისთვის */}
+          <Route path="*" element={<NotFound />} />
         </Routes>
       </MainLayout>
     </BrowserRouter>
