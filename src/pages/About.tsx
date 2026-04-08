@@ -1,11 +1,14 @@
-// src/pages/About.tsx
+import { useEffect } from 'react';
 import Section from '../components/Section';
 
 export default function About() {
+  useEffect(() => {
+    document.title = 'ჩემ შესახებ | გიორგის პორტფოლიო';
+  }, []);
+
   return (
     <Section title="ჩემ შესახებ">
       <div className="flex flex-col md:flex-row items-center gap-10 max-w-4xl mx-auto">
-        {/* სურათის ნაწილი */}
         <div className="w-full md:w-1/3 flex justify-center">
           <img 
             src="https://via.placeholder.com/300" 
@@ -14,7 +17,6 @@ export default function About() {
           />
         </div>
         
-        {/* ტექსტის ნაწილი */}
         <div className="w-full md:w-2/3 text-center md:text-left">
           <h3 className="text-2xl font-bold text-gray-800 mb-4">გიორგი საკანდელიძე</h3>
           <p className="text-gray-600 mb-4 leading-relaxed">

@@ -1,10 +1,15 @@
 // src/pages/Contact.tsx
-import { useState, ChangeEvent, FormEvent } from 'react';
+import { useState, useEffect, ChangeEvent, FormEvent } from 'react'; // დავამატე useEffect
 import Section from '../components/Section';
 import Button from '../components/Button';
 import type { ContactForm } from '../types/index';
 
 export default function Contact() {
+  // გვერდის ჩატვირთვისას ბრაუზერის სათაურის განახლება
+  useEffect(() => {
+    document.title = 'კონტაქტი | გიორგის პორტფოლიო';
+  }, []);
+
   // 1. useState ფორმის მონაცემებისთვის
   const [form, setForm] = useState<ContactForm>({
     name: '',
@@ -15,13 +20,12 @@ export default function Contact() {
   // 2. ფუნქცია, რომელიც იჭერს ველში ჩაწერილ ტექსტს და ანახლებს state-ს
   const handleChange = (e: ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
     const { id, value } = e.target;
-    // ინახავს ძველ მონაცემებს (...form) და ანახლებს მხოლოდ შეცვლილ ველს
     setForm({ ...form, [id]: value });
   };
 
   // 3. ფორმის გაგზავნის ფუნქცია
   const handleSubmit = (e: FormEvent) => {
-    e.preventDefault(); // არ აძლევს გვერდს დარესტარტების (Refresh) საშუალებას
+    e.preventDefault();
     console.log('გაგზავნილი მონაცემები კონსოლში:', form);
     alert(`მადლობა ${form.name}, თქვენი შეტყობინება მიღებულია!`);
     
@@ -32,7 +36,6 @@ export default function Contact() {
   return (
     <Section title="დამიკავშირდით">
       <div className="max-w-xl mx-auto bg-white p-8 rounded-lg shadow-md border border-gray-100">
-        {/* onSubmit-ზე ვკიდებთ ჩვენს ფუნქციას */}
         <form className="space-y-6" onSubmit={handleSubmit}>
           <div>
             <label htmlFor="name" className="block text-sm font-medium text-gray-700 mb-1">სახელი</label>
