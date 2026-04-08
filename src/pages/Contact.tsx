@@ -1,79 +1,100 @@
 // src/pages/Contact.tsx
-import { useState, useEffect, ChangeEvent, FormEvent } from 'react'; // დავამატე useEffect
+import { useEffect } from 'react';
+import { useFormik } from 'formik';
+import * as Yup from 'yup';
 import Section from '../components/Section';
 import Button from '../components/Button';
-import type { ContactForm } from '../types/index';
 
 export default function Contact() {
-  // გვერდის ჩატვირთვისას ბრაუზერის სათაურის განახლება
+  // ბრაუზერის სათაურის განახლება
   useEffect(() => {
     document.title = 'კონტაქტი | გიორგის პორტფოლიო';
   }, []);
 
-  // 1. useState ფორმის მონაცემებისთვის
-  const [form, setForm] = useState<ContactForm>({
-    name: '',
-    email: '',
-    message: ''
+  // Formik-ის ლოგიკა და Yup ვალიდაცია
+  const formik = useFormik({
+    initialValues: {
+      name: '',
+      email: '',
+      message: ''
+    },
+    // ვალიდაციის სქემა
+    validationSchema: Yup.object({
+      name: Yup.string()
+        .required('სახელი სავალდებულოა'),
+      email: Yup.string()
+        .email('არასწორი ელ-ფოსტის ფორმატი')
+        .required('ელ-ფოსტა სავალდებულოა'),
+      message: Yup.string()
+        .min(10, 'შეტყობინება უნდა შეიცავდეს მინიმუმ 10 სიმბოლოს')
+        .required('შეტყობინება სავალდებულოა')
+    }),
+    // გაგზავნის ფუნქცია
+    onSubmit: (values, { resetForm }) => {
+      console.log('გაგზავნილი მონაცემები Formik-იდან:', values);
+      alert(`მადლობა ${values.name}, თქვენი შეტყობინება მიღებულია!`);
+      resetForm(); // ველების გასუფთავება
+    }
   });
-
-  // 2. ფუნქცია, რომელიც იჭერს ველში ჩაწერილ ტექსტს და ანახლებს state-ს
-  const handleChange = (e: ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
-    const { id, value } = e.target;
-    setForm({ ...form, [id]: value });
-  };
-
-  // 3. ფორმის გაგზავნის ფუნქცია
-  const handleSubmit = (e: FormEvent) => {
-    e.preventDefault();
-    console.log('გაგზავნილი მონაცემები კონსოლში:', form);
-    alert(`მადლობა ${form.name}, თქვენი შეტყობინება მიღებულია!`);
-    
-    // გაგზავნის შემდეგ ვასუფთავებთ ველებს
-    setForm({ name: '', email: '', message: '' });
-  };
 
   return (
     <Section title="დამიკავშირდით">
       <div className="max-w-xl mx-auto bg-white p-8 rounded-lg shadow-md border border-gray-100">
-        <form className="space-y-6" onSubmit={handleSubmit}>
+        
+        {/* onSubmit უკვე Formik-ს მიჰყავს */}
+        <form className="space-y-6" onSubmit={formik.handleSubmit}>
+          
+          {/* სახელის ველი */}
           <div>
             <label htmlFor="name" className="block text-sm font-medium text-gray-700 mb-1">სახელი</label>
             <input 
               type="text" 
               id="name" 
-              value={form.name}
-              onChange={handleChange}
-              required
-              className="w-full px-4 py-2 border border-gray-300 rounded-md focus:ring-blue-500 focus:border-blue-500 outline-none"
+              // getFieldProps თავისთავად მოიცავს: value, onChange, onBlur
+              {...formik.getFieldProps('name')}
+              className={`w-full px-4 py-2 border rounded-md outline-none transition-all focus:ring-2 focus:ring-primary ${
+                formik.touched.name && formik.errors.name ? 'border-red-500' : 'border-gray-300'
+              }`}
               placeholder="თქვენი სახელი"
             />
+            {/* ერორის გამოჩენა მხოლოდ მაშინ, თუ ველს შეეხო (touched) და ერორი აქვს */}
+            {formik.touched.name && formik.errors.name && (
+              <p className="text-red-500 text-xs mt-1">{formik.errors.name}</p>
+            )}
           </div>
           
+          {/* ელ-ფოსტის ველი */}
           <div>
             <label htmlFor="email" className="block text-sm font-medium text-gray-700 mb-1">ელ-ფოსტა</label>
             <input 
               type="email" 
               id="email" 
-              value={form.email}
-              onChange={handleChange}
-              required
-              className="w-full px-4 py-2 border border-gray-300 rounded-md focus:ring-blue-500 focus:border-blue-500 outline-none"
+              {...formik.getFieldProps('email')}
+              className={`w-full px-4 py-2 border rounded-md outline-none transition-all focus:ring-2 focus:ring-primary ${
+                formik.touched.email && formik.errors.email ? 'border-red-500' : 'border-gray-300'
+              }`}
               placeholder="example@mail.com"
             />
+            {formik.touched.email && formik.errors.email && (
+              <p className="text-red-500 text-xs mt-1">{formik.errors.email}</p>
+            )}
           </div>
           
+          {/* შეტყობინების ველი */}
           <div>
             <label htmlFor="message" className="block text-sm font-medium text-gray-700 mb-1">შეტყობინება</label>
             <textarea 
               id="message" 
               rows={4} 
-              value={form.message}
-              onChange={handleChange}
-              required
-              className="w-full px-4 py-2 border border-gray-300 rounded-md focus:ring-blue-500 focus:border-blue-500 outline-none resize-none"
+              {...formik.getFieldProps('message')}
+              className={`w-full px-4 py-2 border rounded-md outline-none resize-none transition-all focus:ring-2 focus:ring-primary ${
+                formik.touched.message && formik.errors.message ? 'border-red-500' : 'border-gray-300'
+              }`}
               placeholder="მოკლედ აღწერეთ თქვენი იდეა ან შეკითხვა..."
             ></textarea>
+            {formik.touched.message && formik.errors.message && (
+              <p className="text-red-500 text-xs mt-1">{formik.errors.message}</p>
+            )}
           </div>
           
           <Button variant="primary" className="w-full" type="submit">
