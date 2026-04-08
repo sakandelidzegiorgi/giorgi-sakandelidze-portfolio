@@ -8,8 +8,8 @@ interface ButtonProps extends ButtonHTMLAttributes<HTMLButtonElement> {
 }
 
 export default function Button({ children, variant = 'primary', ...props }: ButtonProps) {
-  // საბაზისო კლასები, რაც ყველა ღილაკს აქვს
-  const baseClasses = "px-4 py-2 rounded-md font-medium transition-colors duration-200";
+  // აქ შევცვალეთ baseClasses ინტერაქტიულობისთვის (დავამატეთ active:scale-95)
+  const baseClasses = "px-4 py-2 rounded-md font-medium transition-all duration-200 active:scale-95";
   
   // ვარიანტების მიხედვით ფერების განაწილება
   const variants = {

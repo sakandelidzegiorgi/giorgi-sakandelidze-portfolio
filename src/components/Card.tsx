@@ -12,7 +12,8 @@ interface CardProps {
 
 export default function Card({ title, image, description, techStack, liveUrl }: CardProps) {
   return (
-    <div className="bg-white rounded-lg shadow-md overflow-hidden hover:shadow-lg transition-shadow duration-300">
+    // აქ შევცვალეთ კლასები ინტერაქტიულობისთვის
+    <div className="bg-white rounded-lg shadow-md overflow-hidden hover:shadow-xl hover:scale-105 transition-all duration-300">
       {/* სურათის ნაწილი */}
       <img src={image} alt={title} className="w-full h-48 object-cover" />
       

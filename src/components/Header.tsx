@@ -25,7 +25,8 @@ export default function Header({ links }: HeaderProps) {
             <Link 
               key={index} 
               to={link.path} 
-              className="text-gray-600 hover:text-blue-600 transition-colors font-medium"
+              // აქ შევცვალეთ ანიმაციის სისწრაფე (duration-300)
+              className="text-gray-600 hover:text-blue-600 transition-colors duration-300 font-medium"
             >
               {link.label}
             </Link>
@@ -34,7 +35,7 @@ export default function Header({ links }: HeaderProps) {
 
         {/* Mobile Hamburger ღილაკი */}
         <button 
-          className="md:hidden text-gray-600"
+          className="md:hidden text-gray-600 hover:text-blue-600 transition-colors"
           onClick={() => setIsOpen(!isOpen)}
         >
           <svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
@@ -47,15 +48,16 @@ export default function Header({ links }: HeaderProps) {
         </button>
       </div>
 
-      {/* Mobile ნავიგაციის მენიუ (იხსნება ღილაკზე დაჭერით) */}
+      {/* Mobile ნავიგაციის მენიუ */}
       {isOpen && (
-        <nav className="md:hidden bg-white border-t pb-4 px-4 flex flex-col space-y-3 pt-3">
+        <nav className="md:hidden bg-white border-t py-2 flex flex-col shadow-inner">
           {links.map((link, index) => (
             <Link 
               key={index} 
               to={link.path} 
-              className="text-gray-600 hover:text-blue-600 font-medium block"
-              onClick={() => setIsOpen(false)} // ლინკზე დაჭერისას მენიუ დაიკეტოს
+              // მობილურში დავამატეთ ფონის შეცვლა (hover:bg-blue-50) და padding (px-4 py-3)
+              className="px-4 py-3 text-gray-600 hover:bg-blue-50 hover:text-blue-600 transition-colors duration-200 font-medium block"
+              onClick={() => setIsOpen(false)}
             >
               {link.label}
             </Link>
