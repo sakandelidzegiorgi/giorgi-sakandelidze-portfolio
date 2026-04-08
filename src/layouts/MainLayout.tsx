@@ -1,22 +1,18 @@
 // src/layouts/MainLayout.tsx
-import { ReactNode, useEffect } from 'react';
-import { useLocation } from 'react-router-dom'; // 1. შემოგვაქვს მარშრუტის დეტექტორი
+import { ReactNode } from 'react';
 import Header from '../components/Header';
 import Footer from '../components/Footer';
 import { navLinks } from '../data/index';
+// 1. შემოგვაქვს ჩვენი Custom Hook-ი
+import { useScrollTop } from '../hooks/useScrollTop'; 
 
 interface LayoutProps {
   children: ReactNode;
 }
 
 export default function MainLayout({ children }: LayoutProps) {
-  // ვიღებთ ინფორმაციას მიმდინარე ლინკზე (მაგალითად: '/about')
-  const location = useLocation();
-
-  // პირველი useEffect: ყოველ ჯერზე, როცა location იცვლება, აგვაქვს ეკრანი ზემოთ
-  useEffect(() => {
-    window.scrollTo(0, 0);
-  }, [location.pathname]); // [location.pathname] არის "ტრიგერი", რომელიც ეუბნება, როდის გაეშვას
+  // 2. უბრალოდ ვიძახებთ მას, ერთ ხაზზე!
+  useScrollTop(); 
 
   return (
     <div className="flex flex-col min-h-screen">
