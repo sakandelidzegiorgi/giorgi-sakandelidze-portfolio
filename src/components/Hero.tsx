@@ -35,17 +35,17 @@ export default function Hero() {
         
         {/* ღილაკები - მობილურზე სრულ სიგანეზე, დესკტოპზე გვერდიგვერდ */}
         <div className="flex flex-col sm:flex-row justify-center gap-5 w-full sm:w-auto">
-          <Link to="/portfolio" className="w-full sm:w-auto">
-            {/* ვამატებთ rounded-full-ს და shadow-ს */}
-            <Button variant="primary" className="w-full rounded-full bg-blue-600 hover:bg-blue-500 text-white shadow-lg shadow-blue-600/30 px-8 py-4 text-lg transition-all duration-300 hover:-translate-y-1">
-              ჩემი ნამუშევრები
-            </Button>
+          <Link 
+            to="/portfolio" 
+            className="w-full sm:w-auto inline-flex items-center justify-center rounded-full bg-blue-600 hover:bg-blue-500 text-white font-semibold shadow-lg shadow-blue-600/30 px-8 py-4 text-lg transition-all duration-300 hover:-translate-y-1 active:scale-95"
+          >
+            ჩემი ნამუშევრები
           </Link>
-          <Link to="/contact" className="w-full sm:w-auto">
-            {/* მეორადი ღილაკი ოდნავ გამჭვირვალე ფონით (backdrop-blur) */}
-            <Button variant="outline" className="w-full rounded-full border-slate-700 bg-slate-800/50 text-white hover:bg-slate-800 hover:border-slate-600 px-8 py-4 text-lg backdrop-blur-sm transition-all duration-300 hover:-translate-y-1">
-              დამიკავშირდი
-            </Button>
+          <Link 
+            to="/contact" 
+            className="w-full sm:w-auto inline-flex items-center justify-center rounded-full border border-slate-700 bg-slate-800/50 text-slate-300 hover:text-white hover:bg-slate-800 hover:border-slate-600 font-semibold px-8 py-4 text-lg backdrop-blur-sm transition-all duration-300 hover:-translate-y-1 active:scale-95"
+          >
+            დამიკავშირდი
           </Link>
         </div>
 

@@ -16,11 +16,11 @@ export default function Header({ links }: HeaderProps) {
       <div className="container mx-auto px-4 py-4 flex justify-between items-center">
         
         {/* === ლოგოს სექცია შეიცვალა === */}
-        <Link to="/" className="hover:opacity-80 transition-opacity duration-300">
+        <Link to="/" className="hover:opacity-80 transition-opacity duration-300" aria-label="მთავარი გვერდი">
           {/* src-ში მიუთითეთ თქვენი ფაილის ზუსტი სახელი (მაგ: /logo.png) */}
           <img 
             src={logoImg}
-            alt="Logo" 
+            alt="გიორგი საკანდელიძის ლოგო" 
             loading="eager"
             fetchpriority="high"
             // h-10 (40px) ან h-12 (48px) აკონტროლებს ლოგოს სიმაღლეს. w-auto ინარჩუნებს პროპორციას.
@@ -46,6 +46,8 @@ export default function Header({ links }: HeaderProps) {
         <button 
           className="md:hidden text-slate-300 hover:text-blue-400 transition-colors p-1"
           onClick={() => setIsOpen(!isOpen)}
+          aria-expanded={isOpen}
+          aria-label="ნავიგაციის მენიუს გახსნა/დახურვა"
         >
           <svg className="w-7 h-7" fill="none" stroke="currentColor" viewBox="0 0 24 24">
             {isOpen ? (

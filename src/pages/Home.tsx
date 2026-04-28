@@ -40,10 +40,11 @@ export default function Home() {
         
         {/* "ყველა პროექტის ნახვა" ღილაკი */}
         <div className="text-center mt-16">
-          <Link to="/portfolio">
-            <Button variant="primary" className="px-10 py-3.5 text-lg font-bold">
-              ყველა პროექტის ნახვა
-            </Button>
+          <Link 
+            to="/portfolio"
+            className="inline-flex items-center justify-center px-10 py-3.5 rounded-full font-bold transition-all duration-300 active:scale-95 tracking-wide text-lg bg-blue-600 text-white hover:bg-blue-500 shadow-lg shadow-blue-600/30"
+          >
+            ყველა პროექტის ნახვა
           </Link>
         </div>
       </Section>
