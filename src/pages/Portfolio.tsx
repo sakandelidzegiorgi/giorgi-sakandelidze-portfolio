@@ -1,5 +1,5 @@
 // src/pages/Portfolio.tsx
-import { useState, useEffect, useCallback } from 'react'; // დაემატა useCallback
+import { useState, useEffect } from 'react';
 import Section from '../components/Section';
 import Card from '../components/Card';
 import Button from '../components/Button';
@@ -8,20 +8,16 @@ import { projects } from '../data/index';
 import GithubRepos from '../components/GithubRepos'; 
 
 export default function Portfolio() {
-  // ბრაუზერის სათაურის შეცვლა
   useEffect(() => {
     document.title = 'პორტფოლიო | გიორგის პორტფოლიო';
   }, []);
 
   const [filter, setFilter] = useState<string>('all');
-  const categories = ['all', 'React', 'TypeScript', 'Tailwind CSS'];
+  
+  // კატეგორიების სია ფილტრის ღილაკებისთვის - დავამატეთ მეტი კატეგორია
+  const categories = ['all', 'React', 'TypeScript', 'Tailwind CSS', 'Next.js', 'Node.js', 'D3.js'];
 
-  // useCallback-ით დავიმახსოვრეთ ფილტრის ფუნქცია, რომ ტყუილად არ შეიქმნას თავიდან
-  const handleFilterChange = useCallback((category: string) => {
-    setFilter(category);
-  }, []);
-
-  // პროექტების გაფილტვრა არჩეული კატეგორიის მიხედვით
+  // ვფილტრავთ პროექტებს სტეიტის მიხედვით
   const filteredProjects = filter === 'all' 
     ? projects 
     : projects.filter(project => project.techStack.includes(filter));
@@ -29,24 +25,28 @@ export default function Portfolio() {
   return (
     <>
       <Section title="ჩემი ნამუშევრები" darkBg={true}>
-        <p className="text-center text-gray-600 mb-8 max-w-2xl mx-auto">
-          აქ მოცემულია ჩემი ბოლო დროის პროექტები. შეგიძლიათ გაფილტროთ ტექნოლოგიების მიხედვით.
+        <p className="text-center text-gray-600 mb-12 max-w-2xl mx-auto text-lg leading-relaxed">
+          აქ მოცემულია ჩემი ბოლო დროის პროექტები. შეგიძლიათ გაფილტროთ ტექნოლოგიების მიხედვით, რათა იხილოთ ჩემი გამოცდილება კონკრეტულ სფეროებში.
         </p>
         
-        <div className="flex flex-wrap justify-center gap-3 mb-12">
+        {/* ფილტრის ღილაკები - უკეთესი სტილით და დალაგებით */}
+        <div className="flex flex-wrap justify-center gap-4 mb-16 border-b border-gray-100 pb-10">
           {categories.map((category) => (
             <Button 
               key={category}
+              // თუ მიმდინარე ღილაკი აქტიურია, ვრთავთ primary სტილს, თუ არა - outline-ს
               variant={filter === category ? 'primary' : 'outline'}
-              // აქ ვიყენებთ ჩვენს ახალ, ოპტიმიზებულ ფუნქციას
-              onClick={() => handleFilterChange(category)}
+              // დაკლიკებისას ვცვლით state-ს
+              onClick={() => setFilter(category)}
+              className="px-6 py-2.5 text-sm uppercase tracking-wider font-semibold"
             >
               {category === 'all' ? 'ყველა' : category}
             </Button>
           ))}
         </div>
         
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+        {/* გაფილტრული პროექტების გამოჩენა - 3-სვეტიანი ბადე უკეთესი Spacing-ით */}
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-10">
           {filteredProjects.length > 0 ? (
             filteredProjects.map((project) => (
               <Card 
@@ -59,7 +59,7 @@ export default function Portfolio() {
               />
             ))
           ) : (
-            <p className="text-center col-span-3 text-gray-500">ამ ტექნოლოგიით პროექტები არ მოიძებნა.</p>
+            <p className="text-center col-span-1 md:col-span-2 lg:col-span-3 text-gray-500 py-20 text-xl border border-dashed border-gray-200 rounded-xl">ამ ტექნოლოგიით პროექტები არ მოიძებნა.</p>
           )}
         </div>
       </Section>

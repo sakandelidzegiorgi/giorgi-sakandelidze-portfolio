@@ -1,3 +1,16 @@
+@font-face {
+  font-family: 'BPG Banner Caps';
+  /* მიაქციე ყურადღება, რომ გზა სწორი იყოს ფაილამდე */
+  src: url('public/bpg_banner_caps.ttf') format('truetype');
+  font-weight: normal;
+  font-style: normal;
+}
+
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+
+html, body {
+  font-family: 'BPG Banner Caps', sans-serif;
+  -webkit-font-smoothing: antialiased;
+}

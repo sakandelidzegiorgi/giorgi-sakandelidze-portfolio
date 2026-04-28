@@ -1,5 +1,5 @@
 // src/components/Button.tsx
-import { ReactNode, ButtonHTMLAttributes } from 'react';
+import type { ReactNode, ButtonHTMLAttributes } from 'react';
 
 // ვიყენებთ ButtonHTMLAttributes-ს, რომ <button>-ის სტანდარტული თვისებებიც (მაგ. onClick) მივიღოთ
 interface ButtonProps extends ButtonHTMLAttributes<HTMLButtonElement> {
@@ -7,19 +7,27 @@ interface ButtonProps extends ButtonHTMLAttributes<HTMLButtonElement> {
   variant?: 'primary' | 'secondary' | 'outline';
 }
 
-export default function Button({ children, variant = 'primary', ...props }: ButtonProps) {
-  // აქ შევცვალეთ baseClasses ინტერაქტიულობისთვის (დავამატეთ active:scale-95)
-  const baseClasses = "px-4 py-2 rounded-md font-medium transition-all duration-200 active:scale-95";
-  
-  // ვარიანტების მიხედვით ფერების განაწილება
+// დავამატეთ className პროფსებში, რათა გარედან მოწოდებული კლასები (მაგ: w-full) არ დაიკარგოს
+export default function Button({ children, variant = 'primary', className = '', ...props }: ButtonProps) {
+
+  // 1. საბაზისო კლასები: აბის ფორმა (rounded-full) და ოდნავ გაზრდილი შიდა სივრცე (px-6 py-2.5)
+  const baseClasses = "px-6 py-2.5 rounded-full font-semibold transition-all duration-300 active:scale-95 flex items-center justify-center tracking-wide";
+
+  // 2. ვარიანტები მორგებული მუქ და თანამედროვე დიზაინზე
   const variants = {
-    primary: "bg-blue-600 text-white hover:bg-blue-700",
-    secondary: "bg-gray-600 text-white hover:bg-gray-700",
-    outline: "border-2 border-blue-600 text-blue-600 hover:bg-blue-50"
+    // Primary: ლურჯი ფონი მანათობელი ჩრდილით (Glow)
+    primary: "bg-blue-600 text-white hover:bg-blue-500 shadow-lg shadow-blue-600/30",
+
+    // Secondary: ნაცრისფერი/slate ფონი
+    secondary: "bg-slate-700 text-white hover:bg-slate-600",
+
+    // Outline: მინის ეფექტი (Glassmorphism), თხელი ჩარჩო და ჰოვერზე ლურჯად განათება
+    outline: "border border-slate-600 text-slate-300 hover:text-white hover:border-blue-500 hover:bg-blue-500/10 backdrop-blur-sm"
   };
 
   return (
-    <button className={`${baseClasses} ${variants[variant]}`} {...props}>
+    // აქ ვაერთიანებთ საბაზისო კლასებს, ვარიანტის ფერებს და გარედან მოწოდებულ className-ს
+    <button className={`${baseClasses} ${variants[variant]} ${className}`} {...props}>
       {children}
     </button>
   );

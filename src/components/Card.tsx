@@ -1,5 +1,5 @@
 // src/components/Card.tsx
-import { memo } from 'react'; // 1. შემოგვაქვს memo
+import { memo } from 'react';
 import Badge from './Badge';
 import Button from './Button';
 
@@ -11,20 +11,32 @@ interface CardProps {
   liveUrl?: string;
 }
 
-// 2. ფუნქცია გადავაკეთეთ ცვლადად, რომ memo-ში გავახვიოთ
 const Card = ({ title, image, description, techStack, liveUrl }: CardProps) => {
   return (
-    <div className="bg-white rounded-lg shadow-md overflow-hidden hover:shadow-xl hover:scale-105 transition-all duration-300">
+    // 1. ფონი შევცვალეთ სუფთა მუქ ფერზე (bg-slate-900), რომ ტექსტი კარგად გამოჩნდეს.
+    // დავამატეთ font-sans, რომ აუცილებლად სუფთა შრიფტი გამოიყენოს.
+    <div className="bg-slate-900 rounded-2xl shadow-xl border border-slate-700 overflow-hidden group hover:shadow-2xl hover:border-slate-500 transition-all duration-300 hover:-translate-y-1 flex flex-col h-full font-sans">
       
-      {/* 3. დავამატეთ loading="lazy" */}
-      <img src={image} alt={title} loading="lazy" className="w-full h-48 object-cover" />
+      <img 
+        src={image} 
+        alt={title} 
+        loading="lazy" 
+        className="w-full h-48 sm:h-56 object-cover group-hover:scale-105 transition-transform duration-500" 
+      />
       
-      <div className="p-5">
-        <h3 className="text-xl font-bold mb-2 text-gray-800">{title}</h3>
-        <p className="text-gray-600 mb-4 line-clamp-3">{description}</p>
+      <div className="p-6 sm:p-7 flex flex-col flex-grow">
+        {/* 2. სათაური: სუფთა თეთრი ფერი (text-white) და ნორმალური სისქე (font-bold) */}
+        <h3 className="text-xl sm:text-2xl font-bold mb-3 text-white leading-snug tracking-normal">
+          {title}
+        </h3>
+        
+        {/* 3. აღწერა: ღია ნაცრისფერი (text-slate-300), რომ ფონზე კარგად იკითხებოდეს */}
+        <p className="text-slate-300 mb-6 leading-relaxed line-clamp-3 flex-grow font-normal text-sm sm:text-base">
+          {description}
+        </p>
         
         {techStack && techStack.length > 0 && (
-          <div className="flex flex-wrap gap-2 mb-4">
+          <div className="flex flex-wrap gap-2 mb-6 mt-auto pt-4 border-t border-slate-700/80">
             {techStack.map((tech, index) => (
               <Badge key={index} text={tech} />
             ))}
@@ -32,9 +44,12 @@ const Card = ({ title, image, description, techStack, liveUrl }: CardProps) => {
         )}
         
         {liveUrl && (
-          <div className="mt-4">
+          <div className="mt-auto">
             <a href={liveUrl} target="_blank" rel="noopener noreferrer">
-              <Button variant="outline">ნახე ლაივში</Button>
+              {/* ღილაკი დავუბრუნეთ სტანდარტულ, მკვეთრ დიზაინს */}
+              <Button variant="primary" className="w-full bg-blue-600 hover:bg-blue-500 text-white font-medium py-3 rounded-xl">
+                ნახე ლაივში
+              </Button>
             </a>
           </div>
         )}
@@ -43,5 +58,4 @@ const Card = ({ title, image, description, techStack, liveUrl }: CardProps) => {
   );
 };
 
-// 4. memo უზრუნველყოფს, რომ ბარათი თავიდან არ დახატოს ბრაუზერმა, თუ მისი მონაცემები არ შეცვლილა
 export default memo(Card);

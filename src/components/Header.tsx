@@ -8,25 +8,31 @@ interface HeaderProps {
 }
 
 export default function Header({ links }: HeaderProps) {
-  // მობილური მენიუს სტეიტი
   const [isOpen, setIsOpen] = useState(false);
 
   return (
-    <header className="bg-white shadow-md sticky top-0 z-50">
+    <header className="bg-slate-900/90 backdrop-blur-md shadow-lg shadow-black/10 border-b border-slate-800 sticky top-0 z-50 transition-all duration-300">
       <div className="container mx-auto px-4 py-4 flex justify-between items-center">
-        {/* ლოგო */}
-        <Link to="/" className="text-2xl font-bold text-blue-600">
-          Logo.
+        
+        {/* === ლოგოს სექცია შეიცვალა === */}
+        <Link to="/" className="hover:opacity-80 transition-opacity duration-300">
+          {/* src-ში მიუთითეთ თქვენი ფაილის ზუსტი სახელი (მაგ: /logo.png) */}
+          <img 
+            src="src/assets/G.S.png" 
+            alt="Logo" 
+            // h-10 (40px) ან h-12 (48px) აკონტროლებს ლოგოს სიმაღლეს. w-auto ინარჩუნებს პროპორციას.
+            className="h-10 w-auto object-contain" 
+          />
         </Link>
+        {/* ============================= */}
 
         {/* Desktop ნავიგაცია */}
-        <nav className="hidden md:flex space-x-6">
+        <nav className="hidden md:flex space-x-8">
           {links.map((link, index) => (
             <Link 
               key={index} 
               to={link.path} 
-              // აქ შევცვალეთ ანიმაციის სისწრაფე (duration-300)
-              className="text-gray-600 hover:text-blue-600 transition-colors duration-300 font-medium"
+              className="text-slate-300 hover:text-blue-400 transition-colors duration-300 font-medium tracking-wide"
             >
               {link.label}
             </Link>
@@ -35,10 +41,10 @@ export default function Header({ links }: HeaderProps) {
 
         {/* Mobile Hamburger ღილაკი */}
         <button 
-          className="md:hidden text-gray-600 hover:text-blue-600 transition-colors"
+          className="md:hidden text-slate-300 hover:text-blue-400 transition-colors p-1"
           onClick={() => setIsOpen(!isOpen)}
         >
-          <svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+          <svg className="w-7 h-7" fill="none" stroke="currentColor" viewBox="0 0 24 24">
             {isOpen ? (
               <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M6 18L18 6M6 6l12 12" />
             ) : (
@@ -50,13 +56,12 @@ export default function Header({ links }: HeaderProps) {
 
       {/* Mobile ნავიგაციის მენიუ */}
       {isOpen && (
-        <nav className="md:hidden bg-white border-t py-2 flex flex-col shadow-inner">
+        <nav className="md:hidden bg-slate-900 border-t border-slate-800 py-2 flex flex-col shadow-inner absolute w-full left-0">
           {links.map((link, index) => (
             <Link 
               key={index} 
               to={link.path} 
-              // მობილურში დავამატეთ ფონის შეცვლა (hover:bg-blue-50) და padding (px-4 py-3)
-              className="px-4 py-3 text-gray-600 hover:bg-blue-50 hover:text-blue-600 transition-colors duration-200 font-medium block"
+              className="px-6 py-4 text-slate-300 hover:bg-slate-800 hover:text-blue-400 transition-colors duration-200 font-medium block border-b border-slate-800/50 last:border-0"
               onClick={() => setIsOpen(false)}
             >
               {link.label}

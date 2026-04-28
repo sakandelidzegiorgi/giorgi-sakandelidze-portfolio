@@ -5,7 +5,8 @@ interface BadgeProps {
 
 export default function Badge({ text }: BadgeProps) {
   return (
-    <span className="inline-block bg-blue-100 text-blue-800 text-xs px-2 py-1 rounded-full font-semibold">
+    // შევცვალეთ ფერები მუქ თემაზე მორგებული ნახევრად გამჭვირვალე (Glass) ეფექტით
+    <span className="inline-block bg-blue-500/10 border border-blue-500/20 text-blue-300 text-xs px-3 py-1 rounded-full font-medium tracking-wide">
       {text}
     </span>
   );
