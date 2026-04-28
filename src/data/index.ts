@@ -1,5 +1,12 @@
 // src/data/index.ts
-
+import img1 from '../assets/1.jpg';
+import img2 from '../assets/2.jpg';
+import img3 from '../assets/3.jpg';
+import img4 from '../assets/4.jpg';
+import img5 from '../assets/5.jpeg';
+import img6 from '../assets/6.webp';
+import img7 from '../assets/7.jpg';
+import img8 from '../assets/8.avif';
 export const navLinks = [
   { path: '/', label: 'მთავარი' },
   { path: '/about', label: 'ჩემ შესახებ' },
@@ -11,7 +18,7 @@ export const projects = [
   {
     id: 1,
     title: 'ონლაინ მაღაზიის პლატფორმა',
-    imageUrl: 'src/assets/1.jpg',
+    imageUrl: img1,
     description: 'სრულფასოვანი ელექტრონული კომერციის ვებ-საიტი მომხმარებლის ავტორიზაციით, კალათით და გადახდის სისტემით.',
     techStack: ['React', 'TypeScript', 'Tailwind CSS', 'Redux', 'Node.js'],
     liveUrl: '#',
@@ -19,7 +26,7 @@ export const projects = [
   {
     id: 2,
     title: 'სოციალური მედიის დაშბორდი',
-    imageUrl: 'src/assets/2.jpg',
+    imageUrl: img2,
     description: 'ინტერაქტიული პანელი სოციალური ქსელების ანალიტიკისა და მართვისთვის რეალურ დროში.',
     techStack: ['React', 'D3.js', 'Firebase', 'Next.js'],
     liveUrl: '#',
@@ -27,7 +34,7 @@ export const projects = [
   {
     id: 3,
     title: 'უძრავი ქონების პორტალი',
-    imageUrl: 'src/assets/3.jpg',
+    imageUrl: img3,
     description: 'ვებ-აპლიკაცია უძრავი ქონების ძიებისა და ფილტრაციისთვის რუკაზე ინტეგრაციით.',
     techStack: ['React', 'TypeScript', 'Google Maps API', 'Tailwind CSS'],
     liveUrl: '#',
@@ -35,7 +42,7 @@ export const projects = [
   {
     id: 4,
     title: 'დავალებების მართვის სისტემა',
-    imageUrl: 'src/assets/4.jpg',
+    imageUrl: img4,
     description: 'Drag-and-drop ტიპის Kanban დაფა გუნდური პროექტებისა და დავალებების ორგანიზებისთვის.',
     techStack: ['React', 'Beautiful DnD', 'Chakra UI', 'TypeScript'],
     liveUrl: '#',
@@ -43,7 +50,7 @@ export const projects = [
   {
     id: 5,
     title: 'კრიპტოვალუტის თრექერი',
-    imageUrl: 'src/assets/5.jpeg',
+    imageUrl: img5,
     description: 'რეალურ დროში კრიპტოვალუტების ფასების, ტრენდებისა და გრაფიკების მონიტორინგის აპლიკაცია.',
     techStack: ['React', 'WebSocket', 'Tailwind CSS', 'Chart.js'],
     liveUrl: '#',
@@ -51,7 +58,7 @@ export const projects = [
   {
     id: 6,
     title: 'ბლოგინგის პლატფორმა',
-    imageUrl: 'src/assets/6.webp',
+    imageUrl: img6,
     description: 'პერსონალური ბლოგის საიტი Markdown-ის მხარდაჭერით და სუფთა, კითხვაზე ორიენტირებული დიზაინით.',
     techStack: ['React', 'Gatsby', 'MDX', 'Tailwind CSS'],
     liveUrl: '#',
@@ -59,7 +66,7 @@ export const projects = [
   {
     id: 7,
     title: 'საგანმანათლებლო პლატფორმა',
-    imageUrl: 'src/assets/7.jpg',
+    imageUrl: img7,
     description: 'ონლაინ კურსებისა და ვიდეო გაკვეთილების პორტალი პროგრესის თრექინგის სისტემით.',
     techStack: ['React', 'GraphQL', 'Stripe', 'TypeScript', 'Next.js'],
     liveUrl: '#',
@@ -67,7 +74,7 @@ export const projects = [
   {
     id: 8,
     title: 'ამინდის პროგნოზის აპი',
-    imageUrl: 'src/assets/8.avif',
+    imageUrl: img8,
     description: 'ადგილმდებარეობისა და ძიების საფუძველზე ამინდის დეტალური პროგნოზის აპლიკაცია ვიზუალური იკონკებით.',
     techStack: ['React', 'OpenWeatherMap API', 'Tailwind CSS'],
     liveUrl: '#',

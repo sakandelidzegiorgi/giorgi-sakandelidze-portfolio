@@ -2,6 +2,7 @@
 import { useState } from 'react';
 import { Link } from 'react-router-dom';
 import type { NavLink } from '../types/index';
+import logoImg from '../assets/G.S.png';
 
 interface HeaderProps {
   links: NavLink[];
@@ -18,7 +19,7 @@ export default function Header({ links }: HeaderProps) {
         <Link to="/" className="hover:opacity-80 transition-opacity duration-300">
           {/* src-ში მიუთითეთ თქვენი ფაილის ზუსტი სახელი (მაგ: /logo.png) */}
           <img 
-            src="src/assets/G.S.png" 
+            src={logoImg}
             alt="Logo" 
             // h-10 (40px) ან h-12 (48px) აკონტროლებს ლოგოს სიმაღლეს. w-auto ინარჩუნებს პროპორციას.
             className="h-10 w-auto object-contain" 

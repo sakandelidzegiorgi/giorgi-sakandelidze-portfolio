@@ -1,5 +1,6 @@
 import { useEffect } from 'react';
 import Section from '../components/Section';
+import giorgiImg from '../assets/giorgi.jpg';
 
 export default function About() {
   useEffect(() => {
@@ -16,7 +17,7 @@ export default function About() {
           <div className="absolute inset-0 bg-blue-500/20 rounded-full blur-2xl group-hover:bg-blue-500/30 transition-all duration-500"></div>
           <img 
             // აუცილებლად გადაიტანეთ ფოტო public ფოლდერში და დაარქვით giorgi.jpg
-            src="src/assets/giorgi.jpg" 
+            src={giorgiImg}
             alt="გიორგი საკანდელიძის პროფილის ფოტო" 
             // ჩარჩო გავამუქეთ (border-slate-700)
             className="w-64 h-64 md:w-72 md:h-72 object-cover rounded-full shadow-2xl border-4 border-slate-700 relative z-10 group-hover:border-blue-500/50 transition-colors duration-300"
