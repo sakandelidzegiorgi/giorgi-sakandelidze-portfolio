@@ -1,9 +1,10 @@
 @font-face {
   font-family: 'BPG Banner Caps';
   /* მიაქციე ყურადღება, რომ გზა სწორი იყოს ფაილამდე */
-  src: url('public/bpg_banner_caps.ttf') format('truetype');
+  src: url('/bpg_banner_caps.ttf') format('truetype');
   font-weight: normal;
   font-style: normal;
+  font-display: swap;
 }
 
 @tailwind base;

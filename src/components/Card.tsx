@@ -21,6 +21,7 @@ const Card = ({ title, image, description, techStack, liveUrl }: CardProps) => {
         src={image} 
         alt={title} 
         loading="lazy" 
+        decoding="async"
         className="w-full h-48 sm:h-56 object-cover group-hover:scale-105 transition-transform duration-500" 
       />
       

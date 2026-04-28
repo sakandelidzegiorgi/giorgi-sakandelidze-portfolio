@@ -19,6 +19,8 @@ export default function About() {
             // აუცილებლად გადაიტანეთ ფოტო public ფოლდერში და დაარქვით giorgi.jpg
             src={giorgiImg}
             alt="გიორგი საკანდელიძის პროფილის ფოტო" 
+            loading="lazy"
+            decoding="async"
             // ჩარჩო გავამუქეთ (border-slate-700)
             className="w-64 h-64 md:w-72 md:h-72 object-cover rounded-full shadow-2xl border-4 border-slate-700 relative z-10 group-hover:border-blue-500/50 transition-colors duration-300"
           />

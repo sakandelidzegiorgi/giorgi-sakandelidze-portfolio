@@ -21,6 +21,8 @@ export default function Header({ links }: HeaderProps) {
           <img 
             src={logoImg}
             alt="Logo" 
+            loading="eager"
+            fetchpriority="high"
             // h-10 (40px) ან h-12 (48px) აკონტროლებს ლოგოს სიმაღლეს. w-auto ინარჩუნებს პროპორციას.
             className="h-10 w-auto object-contain" 
           />
